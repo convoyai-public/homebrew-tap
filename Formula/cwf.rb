@@ -6,23 +6,23 @@ require_relative "github_private_release_download_strategy"
 class Cwf < Formula
   desc "Common Workflow tool: worktree/tmux session driver and turnkey sandboxing for the Common repos"
   homepage "https://github.com/convoyai/eng-dev-tooling"
-  version "0.1.2"
+  version "0.1.1"
 
   depends_on "git"
   depends_on "tmux"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v0.1.2/cwf_0.1.2_darwin_amd64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "cad27dd567dc7e31ed14a363b4a277ff2728e39e9e9e9163e2ef7ed5a33d528d"
+      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v0.1.1/cwf_0.1.1_darwin_amd64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "ce8acb97c1858c95ca1ffd310974153497e2c3606a74302ddb685d323c03df8d"
 
       define_method(:install) do
         bin.install "cwf"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v0.1.2/cwf_0.1.2_darwin_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "4d15e9a91854affebc3aca920a1d2b1be9c6a921959b77ec87c5bf9d79bf233a"
+      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v0.1.1/cwf_0.1.1_darwin_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "cfa57fe73cc938b0f0dd65911cbcec06060ff1780a223edeae16be4048a95bc5"
 
       define_method(:install) do
         bin.install "cwf"
@@ -32,15 +32,15 @@ class Cwf < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v0.1.2/cwf_0.1.2_linux_amd64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "8e1fbfa03b36db368c6ca9c90779d018c6f8f03f88143b15079984d08e6da290"
+      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v0.1.1/cwf_0.1.1_linux_amd64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "5b4756e242c5d3f1c19dd8e0eb799a6755db0de80644ba3132a5a63a3cbabd9b"
       define_method(:install) do
         bin.install "cwf"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v0.1.2/cwf_0.1.2_linux_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "dbf357498aae0bff459917d845d9221e222fe1574a209414b15a927dc94c2fde"
+      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v0.1.1/cwf_0.1.1_linux_arm64.tar.gz", using: GitHubPrivateReleaseDownloadStrategy
+      sha256 "41d5a2a7ad85368bd7ca1e117a50a580258aa0544fae8e08025fa03f569606fb"
       define_method(:install) do
         bin.install "cwf"
       end
