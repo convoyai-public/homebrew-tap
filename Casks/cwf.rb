@@ -42,17 +42,17 @@ cask "cwf" do
     end
   end
 
-  version "0.1.3"
+  version "0.1.14"
 
   on_macos do
     on_intel do
-      sha256 "b09b43523be71fe7eb0e52f695d8821aa9a8355327a532f2df3c3c78d90e2618"
+      sha256 "ddb9906eb7b0944c7c28424fb2128bb42300e95eee1a069de288eb46676b4e05"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_arm do
-      sha256 "f3c8b9475627dec6c7812aa5abdc2f4ac4253d74327f430e7af4e7d78c619d0e"
+      sha256 "5c73ebdfb13218fb07d8b7d4ee039805f4f9a29a0e139bd30edcc959c99a1323"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_arm64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
@@ -61,13 +61,13 @@ cask "cwf" do
 
   on_linux do
     on_intel do
-      sha256 "3cb10e7ba53cc00e3b003ba031de565e0462f86e58167dde97fe10a72a645c96"
+      sha256 "bc1311491305254d26197efc70c027598b4ad22d7d014ee4cf61d5771634c43d"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_arm do
-      sha256 "728aece00a0ba2a4884b100a7110a60612c86de473054e4eb56e03d8276d3bf1"
+      sha256 "ecd07e420c924225464dfabd02456fa56632ff11c0eed9bb44ad70d3b4e0ff33"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_arm64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
@@ -100,7 +100,7 @@ cask "cwf" do
     cwf needs a sibling checkout of the eng-dev-tooling "Tools Repo" (the repo this
     formula is built from — it contains sandcat/profiles/ and the config schema) to
     resolve sandbox profiles and templates at runtime. See the Usage/Prerequisites
-    section of that repo's README.md (and COMMON-TOOL-DESIGN.md §9) for the
+    section of that repo's README.md (and docs/getting-started.md) for the
     sibling-checkout convention and the COMMON_DEV_TOOLS override.
   EOS
 end
