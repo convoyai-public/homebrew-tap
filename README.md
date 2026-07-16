@@ -4,8 +4,11 @@ Homebrew tap for Convoy AI internal tools.
 
 ## Usage
 
+### cwf Tool
 ```
-brew install convoyai-public/tap/cwf
+brew tap convoyai-public/tap
+brew trust convoyai-public/tap
+brew install --cask cwf
 ```
 
 Formulae in this tap are published automatically by each tool's release
