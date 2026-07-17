@@ -29,10 +29,29 @@ cask "cwf" do
 
     def set_github_token
       @github_token = ENV["HOMEBREW_GITHUB_API_TOKEN"]
-      raise CurlDownloadStrategyError, "HOMEBREW_GITHUB_API_TOKEN is required." unless @github_token
+      @github_token = github_cli_token if @github_token.to_s.empty?
+      raise CurlDownloadStrategyError, "HOMEBREW_GITHUB_API_TOKEN is required." if @github_token.to_s.empty?
+
+      ENV["HOMEBREW_GITHUB_API_TOKEN"] = @github_token
 
       # validate access
       GitHub.repository(@owner, @repo)
+    end
+
+    def github_cli_token
+      return unless which("gh") && which("jq")
+      return unless system("gh", "auth", "status", out: File::NULL, err: File::NULL)
+
+      username = Utils.safe_popen_read(
+        "sh", "-c",
+        "gh auth status --json hosts | jq -r '.hosts[\"github.com\"][].login'",
+      ).strip
+      return if username.empty? || username == "null" || username.include?("\n")
+
+      token = Utils.safe_popen_read("gh", "auth", "token", "--user", username).strip
+      token unless token.empty?
+    rescue ErrorDuringExecution
+      nil
     end
 
     def asset_id
@@ -42,17 +61,17 @@ cask "cwf" do
     end
   end
 
-  version "0.2.3"
+  version "0.2.5"
 
   on_macos do
     on_intel do
-      sha256 "b53ff314aed9d8c0bb1fc39df40ef677fa653cbb03c4034ae2b71b0d39d3aa80"
+      sha256 "b3bfc04410bce5ffa79e8d38c25380c6e8419e06b1dcefc2eca1d377dcfd4561"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_arm do
-      sha256 "d3417476596f77baad49f219d5456f351dc2ee528f8ef78e3f97c5845a147066"
+      sha256 "5a157e0f0a180f4485b8d7510a7f6d2d3562029ef05de590fc1fc0006570d5d5"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_arm64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
@@ -61,13 +80,13 @@ cask "cwf" do
 
   on_linux do
     on_intel do
-      sha256 "8975ce4b9ea7597ab47beeff12b71d17d6cb56abcb166f3a842dec477baa64f3"
+      sha256 "6ed2f6a59fec9c95189de8a81a413b980b914a817d4d80568f49d82d5dbd4df7"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_arm do
-      sha256 "cbeb2c85b65fcb99378f8eaae23dd9f25fc5de7a6ded3dbd721f609253bf57db"
+      sha256 "3b4d0421483bbe31c1b8b032884dc56b903e6f7984aadd7f82f373fb810cc73b"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_arm64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
@@ -98,7 +117,8 @@ cask "cwf" do
 
   caveats <<~EOS
     cwf needs a sibling checkout of the eng-dev-tooling "Tools Repo" (the repo this
-    formula is built from — it contains sandcat/profiles/ and the config schema) to
+    formula is built from — it contains the .cwf-tools-repo and sandcat/profiles/
+    markers) to
     resolve sandbox profiles and templates at runtime. See the Usage/Prerequisites
     section of that repo's README.md (and docs/getting-started.md) for the
     sibling-checkout convention and the COMMON_DEV_TOOLS override.
