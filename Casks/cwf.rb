@@ -39,6 +39,12 @@ cask "cwf" do
     end
 
     def github_cli_token
+      # Hack Homebrew bin not in path for some reason - misses gh
+      dirmac = "/opt/homebrew/bin"
+      ENV['PATH'] = "#{dirmac}:#{ENV['PATH']}" if Dir.exist?(dirmac)
+      dirlinux = "/home/linuxbrew/.linuxbrew/bin"
+      ENV['PATH'] = "#{dirlinux}:#{ENV['PATH']}" if Dir.exist?(dirlinux)
+
       return unless which("gh") && which("jq")
       return unless system("gh", "auth", "status", out: File::NULL, err: File::NULL)
 
@@ -61,17 +67,17 @@ cask "cwf" do
     end
   end
 
-  version "0.2.5"
+  version "0.2.6"
 
   on_macos do
     on_intel do
-      sha256 "b3bfc04410bce5ffa79e8d38c25380c6e8419e06b1dcefc2eca1d377dcfd4561"
+      sha256 "4a353fcabb32701d86b3024dcf803ea8a410d1ccb2914650ca590ff7aedcb22b"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_arm do
-      sha256 "5a157e0f0a180f4485b8d7510a7f6d2d3562029ef05de590fc1fc0006570d5d5"
+      sha256 "2eafce748375c8049be9b025e1a4a2dbd71d092e68522ca2f69ec6e5a594b5d9"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_arm64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
@@ -80,13 +86,13 @@ cask "cwf" do
 
   on_linux do
     on_intel do
-      sha256 "6ed2f6a59fec9c95189de8a81a413b980b914a817d4d80568f49d82d5dbd4df7"
+      sha256 "cc176c08db28104816c0605ab51082a09f9001f0750a9a28fe6df0ecf5cdb524"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_arm do
-      sha256 "3b4d0421483bbe31c1b8b032884dc56b903e6f7984aadd7f82f373fb810cc73b"
+      sha256 "ce983ac0797ac6a871132dcb842c62d9179e6434dba47261cc2d4e1e19f5adf2"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_arm64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
