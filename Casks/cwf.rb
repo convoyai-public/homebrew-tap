@@ -39,12 +39,6 @@ cask "cwf" do
     end
 
     def github_cli_token
-      # Hack Homebrew bin not in path for some reason - misses gh
-      dirmac = "/opt/homebrew/bin"
-      ENV['PATH'] = "#{dirmac}:#{ENV['PATH']}" if Dir.exist?(dirmac)
-      dirlinux = "/home/linuxbrew/.linuxbrew/bin"
-      ENV['PATH'] = "#{dirlinux}:#{ENV['PATH']}" if Dir.exist?(dirlinux)
-
       return unless which("gh") && which("jq")
       return unless system("gh", "auth", "status", out: File::NULL, err: File::NULL)
 
