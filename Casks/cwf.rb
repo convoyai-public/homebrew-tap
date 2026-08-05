@@ -82,17 +82,17 @@ cask "cwf" do
     end
   end
 
-  version "0.7.1"
+  version "0.7.2"
 
   on_macos do
     on_intel do
-      sha256 "2ea2157ec2acad7e4017ee28d2d21be354d780dba951166f82a0c62dcd1ca607"
+      sha256 "1ced7707758c3033b40f443b12ae17e2dc00c19009ec2b222d81483c5f3c1a02"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_arm do
-      sha256 "7c4db50b157a779e6a8a13454d046fa3a5068973c0db5226c75b39d6e7c83eb5"
+      sha256 "c6afcd181f08b24746347bf3912e7086c825f1e66af6b33e09f949c9a243578a"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_arm64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
@@ -101,13 +101,13 @@ cask "cwf" do
 
   on_linux do
     on_intel do
-      sha256 "c6de09a1e0d44d7cd3620d32c0dcb3952c5b5cfaf406426df49feada51089517"
+      sha256 "b1146912c4cb67a2ebf49edb6d8fed4d8b75ed16e7c1c2f5b449a5727c2f12b9"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_arm do
-      sha256 "05cb9d11f4a171e546aae24f950f0f4fcd26929c5c303ae2aceee18f757c7ee1"
+      sha256 "439edcceee7b4ef4537dfb7cc67b22e5854ad655bd900c09fc621051e06cb3b7"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_arm64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
