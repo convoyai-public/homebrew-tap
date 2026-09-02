@@ -82,33 +82,32 @@ cask "cwf" do
     end
   end
 
-  version "0.9.11"
+  version "0.9.12"
 
   on_macos do
-    on_intel do
-      sha256 "2c687b9a950df4e8d1ea3f41fcca9aa627f3205318baa554d6f7f52253e1b0f6"
-      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_amd64.tar.gz",
-        verified: "github.com/convoyai/eng-dev-tooling/",
-        using: GitHubPrivateRepositoryReleaseDownloadStrategy
-    end
     on_arm do
-      sha256 "70827e0f506ebe9bf5639c0c112304c3feea2f4a8a5989b1d3636bd21e6cc7c5"
+      sha256 "2bdb66e4ef7e8f5900c017b55307e04c6e691217a445683c24d0944348d416ca"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_arm64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
-  end
-
-  on_linux do
     on_intel do
-      sha256 "e7d3eb9d98092b91d675d91dabcb11720339989d7df706ede8dc930e84eeb8bf"
-      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_amd64.tar.gz",
+      sha256 "8a09fac2c8724282e944dd971808cd14b282516f7f63e49de7e3fb1f2101c9f3"
+      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
+  end
+  on_linux do
     on_arm do
-      sha256 "2e1b16e9c470381e213f22efdde62ec205241d65e423b68b5335646f9f175e1e"
+      sha256 "b246379c0e6b9bc02ad6c2ea1d7fdb802b142ca590c136cba8e47d7aa4eeef5b"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_arm64.tar.gz",
+        verified: "github.com/convoyai/eng-dev-tooling/",
+        using: GitHubPrivateRepositoryReleaseDownloadStrategy
+    end
+    on_intel do
+      sha256 "8564a48b723ecc88ff198d0fbe1bd706cb297429d215fcdfd7e78a42f3b219bb"
+      url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_amd64.tar.gz",
         verified: "github.com/convoyai/eng-dev-tooling/",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
