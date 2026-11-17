@@ -82,28 +82,28 @@ cask "cwf" do
     end
   end
 
-  version "0.16.5"
+  version "0.16.6"
 
   on_macos do
     on_arm do
-      sha256 "a737839d935798f035db8332590d73d20f4fcd6ad6773b354eaf5cd26d78784d"
+      sha256 "30b95fefa36e734eb7faee3b6e61c70038b40eb8bcf386acd403b947a9e069b8"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_arm64.tar.gz",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_intel do
-      sha256 "cee7b423b59f78e984ac9f688f41fc5c6b3f4b8589fa2a69f3a30acfd13958d8"
+      sha256 "2fcf95e8622685705171f8c61d401be66969d6d398a63b5fb897ba0b84951cc7"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_amd64.tar.gz",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
   end
   on_linux do
     on_arm do
-      sha256 "36a698ac6b63baad50bde27462fa2fa8376855414fbf79310b61829aaec31aa0"
+      sha256 "f6dcaefeb22d6666a2b6db4a81b91b5efacb30818acb8e3df50293da980769de"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_arm64.tar.gz",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_intel do
-      sha256 "08c95ce2165f3662cad6e70ca3310f506aee7524480a26c5853b256eb3c77430"
+      sha256 "504ba661d9a19aaf8c175475f6a4ab474b9aa945f253f55e2584f44cc380e034"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_amd64.tar.gz",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
