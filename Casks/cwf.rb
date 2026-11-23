@@ -82,28 +82,34 @@ cask "cwf" do
     end
   end
 
-  version "0.18.0"
+  postflight_steps do
+    on_macos do
+      run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{staged_path}}/cwf"]
+    end
+  end
+
+  version "0.19.0"
 
   on_macos do
     on_arm do
-      sha256 "2fe827a52c825184f99f35b918cd4694c19bb581394bc4751dd0008b0a3a9e3e"
+      sha256 "80c3f42618a610dc98631e67d4d3b81458ec472b20ce9fc0b91a6ec6b3f26c04"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_arm64.tar.gz",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_intel do
-      sha256 "c738b96adbc7aea6ffb592d31e6af2a8d07f32343bd35aca83effd856254c172"
+      sha256 "60829f73e613d30620edfd6a242bb31d73edc4e51ed013fd19e940f0f1f19671"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_darwin_amd64.tar.gz",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
   end
   on_linux do
     on_arm do
-      sha256 "57657cea10d27f8a736a6c9550af53f0cb4eb332f35476571606a67126e86714"
+      sha256 "7e4bd1ffae46e99a64b8b4eff8928eaf1a69fffe32855b5a95de4ec30d5f9076"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_arm64.tar.gz",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
     on_intel do
-      sha256 "50aad44c1ac5468ebac2ab50df0ff52386d60664c60dd1679e8e8ecbeccf729e"
+      sha256 "e431d3e5742206f44fe947e3b18584883354addbe0af8a6417d7963ec607e774"
       url "https://github.com/convoyai/eng-dev-tooling/releases/download/v#{version}/cwf_#{version}_linux_amd64.tar.gz",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
     end
@@ -122,12 +128,6 @@ cask "cwf" do
     ]
 
   binary "cwf"
-
-  postflight do
-    if OS.mac?
-      system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/cwf"]
-    end
-  end
 
   # No zap stanza required
 
